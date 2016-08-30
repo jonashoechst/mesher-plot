@@ -171,3 +171,7 @@ def line(ax, data, color="red", linewidth=0.5, alpha=0.5):
     # create scale for data
     x = numpy.arange(len(data))
     ax.plot(x, data, color=color, linewidth=linewidth, alpha=alpha)
+
+
+def variableLine(ax, x, y, color="red", linewidth=0.5, alpha=0.5):
+    ax.plot(x, y, color=color, linewidth=linewidth, alpha=alpha)

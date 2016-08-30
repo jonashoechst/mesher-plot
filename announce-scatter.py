@@ -19,29 +19,36 @@ for root, dirs, files in os.walk(mesher_root):
         logs.append([l.split("\n")[0] for l in logfile.readlines()])
         logfile.close()
 
-# pprint(logs)
 ids = []
 announces = []
 
 for log in logs:
     ids.append(log[1].split(" ")[-1])
     tmp = []
-    for line in log:
-        if "ANNOUNCE" in line and line.split(",")[2] == ids[-1]:
-            tmp.append(float(line.split(",")[0])/1000)
+    for logline in log:
+        if "ANNOUNCE" in logline and logline.split(",")[2] == ids[-1]:
+            tmp.append(float(logline.split(",")[0])/1000)
     announces.append(tmp)
+
 
 start = min([min(timestamps) for timestamps in announces])
 end = max([max(timestamps) for timestamps in announces])
-# print("Start: {}; end: {}".format(start, end))
+
+discreteness = 2
+count = int((end-start) / discreteness + discreteness + 1)
+x_values = [discreteness * (i) for i in range(count)]
+aps = [0] * count
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
 
 for i in range(len(announces)):
-    # announces[i] = [announce-start for announce in announces[i]]
     plt.scatter([announce-start for announce in announces[i]], [i] * len(announces[i]), marker="+")
+    for announce in announces[i]: aps[int((announce-start) / discreteness) + 1] += 1
 
+
+ax2 = ax1.twinx()
+variableLine(ax2, x_values, aps, linewidth=1.5)
 
 ax1.set_ylim([-1, len(announces)])
 ax1.set_xlim([0, end-start])
