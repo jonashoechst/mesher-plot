@@ -74,7 +74,7 @@ def boxplot(fig, keys, values, bottom=None, top=None):
     ax.get_xaxis().tick_bottom()
     ax.get_yaxis().tick_left()
     if bottom != None and top != None: ax.set_ylim(bottom, top)
-    plt.xticks(rotation=70)
+    plt.xticks(rotation=25)
 
     plt.setp(bp['boxes'], color=blue, linewidth=2)
     plt.setp(bp['boxes'], facecolor=mint)
