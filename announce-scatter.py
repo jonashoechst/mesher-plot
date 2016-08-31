@@ -17,11 +17,14 @@ x_values, aps = computeAnnouncesPerSecond(announces)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
+ax1.set_xlabel("time (s)")
+ax1.set_ylabel("node_announce", color="blue")
 
 for i in range(len(announces)):
-    plt.scatter(announces[i], [i] * len(announces[i]), marker="+", linewidth=0.2, color="black")
+    plt.scatter(announces[i], [i] * len(announces[i]), marker="+", linewidth=0.2, color="blue")
 
 ax2 = ax1.twinx()
+ax2.set_ylabel("announces / second", color="orange", alpha=0.7)
 variableLine(ax2, x_values, aps, linewidth=1.5, alpha=0.7, color="orange")
 
 ax1.set_ylim([-1, len(announces)])
