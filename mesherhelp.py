@@ -1,6 +1,6 @@
 import os
 
-def getAnnouncesFromPath(path):
+def getAnnouncesFromPath(path, offset=0):
     mesher_root = os.path.join(path, "mesher/")
     logs = []
 
@@ -21,7 +21,7 @@ def getAnnouncesFromPath(path):
                 tmp.append(float(logline.split(",")[0])/1000)
         announces.append(tmp)
 
-    start = min2d(announces)
+    start = min2d(announces) + offset
 
     return [[announce-start for announce in announce_list] for announce_list in announces]
 
