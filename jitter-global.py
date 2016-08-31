@@ -7,6 +7,8 @@ from mesherhelp import *
 import matplotlib.pyplot as plt
 from pprint import pprint
 
+init_time_s = 10
+
 paths = sys.argv[1:]
 pprint(paths)
 names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[:2]) for path in paths]
