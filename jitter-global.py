@@ -7,7 +7,7 @@ from mesherhelp import *
 import matplotlib.pyplot as plt
 from pprint import pprint
 
-init_time_s = 10
+init_time_s = 20
 
 paths = sys.argv[1:]
 pprint(paths)
@@ -15,7 +15,7 @@ names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[:2]) for p
 
 print("Experiment names: "+", ".join(names))
 
-experiments = [sorted(flatten(getAnnouncesFromPath(path))) for path in paths]
+experiments = [sorted(flatten(getAnnouncesFromPath(path, offset=init_time_s))) for path in paths]
 experimtens_dist = [[b-a for a, b in zip(exp[:-1], exp[1:])] for exp in experiments]
 
 
