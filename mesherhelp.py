@@ -21,7 +21,9 @@ def getAnnouncesFromPath(path):
                 tmp.append(float(logline.split(",")[0])/1000)
         announces.append(tmp)
 
-    return announces
+    start = min2d(announces)
+
+    return [[announce-start for announce in announce_list] for announce_list in announces]
 
 def min2d(arr2d):
     return min([min(arr) for arr in arr2d])
@@ -39,12 +41,11 @@ def avg(values):
     return sum(values) / len(values)
 
 def computeAnnouncesPerSecond(announces, discreteness=1):
-    start = min2d(announces)
-    end = max2d(announces)
-    count = int((end-start) / discreteness + discreteness + 1)
+    duration = max2d(announces)
+    count = int(duration / discreteness + discreteness + 1)
     x_values = [discreteness * (i) for i in range(count)]
     aps = [0] * count
     for nodeAnnounces in announces:
         for announce in nodeAnnounces:
-            aps[int((announce-start) / discreteness) + 1] += 1
+            aps[int(announce / discreteness) + 1] += 1
     return (x_values, aps)
