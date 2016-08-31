@@ -19,10 +19,10 @@ fig = plt.figure()
 ax1 = fig.add_subplot(111)
 
 for i in range(len(announces)):
-    plt.scatter(announces[i], [i] * len(announces[i]), marker="+")
+    plt.scatter(announces[i], [i] * len(announces[i]), marker="+", linewidth=0.2, color="black")
 
 ax2 = ax1.twinx()
-variableLine(ax2, x_values, aps, linewidth=1.5)
+variableLine(ax2, x_values, aps, linewidth=1.5, alpha=0.7, color="orange")
 
 ax1.set_ylim([-1, len(announces)])
 ax1.set_xlim([0, end])
