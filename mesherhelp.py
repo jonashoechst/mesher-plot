@@ -29,6 +29,15 @@ def min2d(arr2d):
 def max2d(arr2d):
     return max([max(arr) for arr in arr2d])
 
+def flatten(arr2d):
+    return sum(arr2d, [])
+
+def mean(values):
+    return sorted(values)[(len(values)+1)/2]
+
+def avg(values):
+    return sum(values) / len(values)
+
 def computeAnnouncesPerSecond(announces, discreteness=1):
     start = min2d(announces)
     end = max2d(announces)
