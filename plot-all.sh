@@ -16,3 +16,9 @@ fi
 for i in $1/*/ ; do
  plot $i &
 done
+
+wait
+
+mkdir pdfs
+mv *.pdf pdfs
+echo "Done"
