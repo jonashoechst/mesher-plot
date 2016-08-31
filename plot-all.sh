@@ -1,24 +1,28 @@
 #!/bin/bash
 
-function plot {
-    echo "Processing $1"
-    ./announce-scatter.py $1
-    #./load-netmon.py $1
-    #./jitter-global.py $1
-    #./jitter-local.py $1    
-}
-
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 <base of log paths>"
     exit
 fi
 
 for i in $1/*/ ; do
- plot $i &
+    ./announce-scatter.py $i &
+    ./load-netmon.py $i &
 done
 
 wait
 
-mkdir pdfs
+mkdir -p pdfs
 mv *.pdf pdfs
+
+echo
+echo "Plotting jitter groups"
+
+jitter_groups="n010 n025 n050 n100 unsteady rand"
+
+for g in $jitter_groups; do
+    ./jitter-global.py $1/*$g*/
+    mv jitter-global.pdf pdfs/jitter-global-$g.pdf
+done
+
 echo "Done"
