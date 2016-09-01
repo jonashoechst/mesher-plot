@@ -7,7 +7,7 @@ from mesherhelp import *
 import matplotlib.pyplot as plt
 from pprint import pprint
 
-colors = ["r", "g", "b", "c", "m", "y", "k"]
+colors = ["firebrick", "sienna", "orange", "gold", "olive", "sage", "mediumseagreen", "teal", "dodgerblue", "darkviolet", "deeppink"]
 
 paths = sys.argv[1:]
 names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[:2]) for path in paths]
@@ -22,14 +22,14 @@ end = min([max2d(experiment) for experiment in experiments])
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
 ax1.set_xlabel("time (s)")
-ax1.set_ylabel("# announce")
+ax1.set_ylabel("announces / second")
 
 import matplotlib.patches as mpatches
 patches = []
 for i in range(len(names)):
     color = colors[i % len(colors)]
-    line(ax1, apses[i], linewidth=1, alpha=0.5, color=color)
-    patches.append(mpatches.Patch(color=color, label=names[i], alpha=0.5))
+    line(ax1, apses[i], linewidth=1, alpha=0.7, color=color)
+    patches.append(mpatches.Patch(color=color, label=names[i], alpha=0.7))
     i += 1
 
 ax1.legend(patches, names, prop={'size': 10})
