@@ -10,7 +10,6 @@ from pprint import pprint
 init_time_s = 20
 
 paths = sys.argv[1:]
-pprint(paths)
 names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[:2]) for path in paths]
 
 print("Experiment names: "+", ".join(names))
@@ -29,4 +28,4 @@ ax1.set_xlabel("node numbers")
 # ax1.set_ylim([-0.01, 0.5])
 # ax1.set_xlim([0, end-start])
 plt.savefig(os.path.basename(__file__).split(".")[0]+".pdf")
-print("Plot is done.")
+print("Plot is done.\n")
