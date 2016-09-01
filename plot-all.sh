@@ -25,4 +25,16 @@ for g in $jitter_groups; do
     mv jitter-global.pdf pdfs/jitter-global-$g.pdf
 done
 
+echo
+echo "Plotting announce groups"
+
+announce_groups=$jitter_groups
+
+for g in $announce_groups; do
+    ./compare-announces.py $1/*$g*/
+    mv compare-announces.pdf pdfs/compare-announces-$g.pdf
+done
+
+
+
 echo "Done"
