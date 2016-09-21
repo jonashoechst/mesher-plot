@@ -18,7 +18,7 @@ mv *.pdf pdfs
 echo
 echo "Plotting jitter groups"
 
-jitter_groups="002 005 010 025 050 100 200 maxfirst minfirst rand_and_sweet random static step_and_rand step- unsteady"
+jitter_groups="002 005 010 025 050 100 200 MaxFirst- MinFirst- Random- RandomSweet- Static- Step- StepRand- Unsteady-"
 
 for g in $jitter_groups; do
     ./jitter-global.py $1/*$g*/
