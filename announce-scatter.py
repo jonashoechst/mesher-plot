@@ -29,7 +29,9 @@ for i in range(len(announces)):
 
 ax2 = ax1.twinx()
 ax2.set_ylabel("announces / second", color="orange", alpha=0.7)
-variableLine(ax2, x_values, aps, linewidth=1.5, alpha=0.7, color="orange")
+
+weightedAvgLine(ax2, aps, linewidth=1.5, alpha=0.7, color="orange", weights=range(20))
+# variableLine(ax2, x_values, aps, linewidth=1.5, alpha=0.7, color="orange")
 
 ax1.set_ylim([0, len(announces)+1])
 ax1.set_xlim([0, end])
