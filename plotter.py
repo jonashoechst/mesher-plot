@@ -164,7 +164,7 @@ def event(fig, x_value, description):
     ax = fig.add_subplot(111)
     ax.axvline(x_value, color=coal, linewidth=0.2)
     x_bounds = ax.get_xlim()
-    ax.annotate(s=description, xy =(((x_value-x_bounds[0])/(x_bounds[1]-x_bounds[0])-0.012), 1.01), xycoords='axes fraction', verticalalignment='right', horizontalalignment='right bottom', rotation=90)
+    ax.annotate(s=description, xy =(((x_value-x_bounds[0])/(x_bounds[1]-x_bounds[0])-0.012), 1.01), xycoords='axes fraction', verticalalignment='right', horizontalalignment='right bottom')
 
 def line(ax, data, color="red", linewidth=0.5, alpha=0.5):
     '''Creates a line: data -> f(x)'''
