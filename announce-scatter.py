@@ -35,5 +35,6 @@ weightedAvgLine(ax2, aps, linewidth=1.5, alpha=0.7, color="orange", weights=rang
 
 ax1.set_ylim([0, len(announces)+1])
 ax1.set_xlim([0, end])
+ax2.set_ylim([0, max(aps)])
 plt.savefig(os.path.basename(__file__).split(".")[0]+"-"+name+".pdf")
 print("Plot is done.\n")
