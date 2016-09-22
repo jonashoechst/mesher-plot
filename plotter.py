@@ -172,6 +172,24 @@ def line(ax, data, color="red", linewidth=0.5, alpha=0.5):
     x = numpy.arange(len(data))
     ax.plot(x, data, color=color, linewidth=linewidth, alpha=alpha)
 
+def avgLine(ax, data, color="red", linewidth=0.5, alpha=0.5, avg=5):
+    data_ext = [0] * (avg-1) + data
+    avgs = []
+    for i in range(len(data)):
+        avgs.append(float(sum(data_ext[i:i+avg])) / avg )
+
+    x = numpy.arange(avg, len(data))
+    ax.plot(x, avgs[avg:], color=color, linewidth=linewidth, alpha=alpha)
+
+def weightedAvgLine(ax, data, color="red", linewidth=0.5, alpha=0.5, weights=[1,2,3,4,5]):
+    data_ext = [0] * (len(weights)-1) + data
+    avgs = []
+    for i in range(len(data)):
+        weighted_data = [a*b for a,b in zip(weights,data_ext[i:i+len(weights)])]
+        avgs.append(float(sum(weighted_data)) / sum(weights) )
+
+    x = numpy.arange(len(weights), len(data))
+    ax.plot(x, avgs[len(weights):], color=color, linewidth=linewidth, alpha=alpha)
 
 def variableLine(ax, x, y, color="red", linewidth=0.5, alpha=0.5):
     ax.plot(x, y, color=color, linewidth=linewidth, alpha=alpha)
