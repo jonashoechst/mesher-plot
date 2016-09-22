@@ -10,7 +10,7 @@ echo "Saving pdfs to $pdf_path"
 
 for i in $1/*/ ; do
     ./announce-scatter.py $i &
-    ./load-netmon.py $i &
+    # ./load-netmon.py $i &
 done
 
 wait
