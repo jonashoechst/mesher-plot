@@ -14,6 +14,7 @@ name = os.path.basename(os.path.normpath(sys.argv[1]))
 print("Experiment name: "+name)
 
 announces = getAnnouncesFromPath(sys.argv[1])
+random.shuffle(announces)
 end = max2d(announces)
 x_values, aps = computeAnnouncesPerSecond(announces)
 
