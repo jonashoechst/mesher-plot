@@ -49,3 +49,20 @@ def computeAnnouncesPerSecond(announces, discreteness=1):
         for announce in nodeAnnounces:
             aps[int(announce / discreteness) + 1] += 1
     return (x_values, aps)
+
+def splitExperiment(experiment, event_time=160):
+    experiment_filtered = []
+    for i in range(len(experiment)):
+        node_announces = experiment[i]
+        if i < len(experiment) / 2: experiment_filtered.append(node_announces)
+        else: experiment_filtered.append([ann for ann in node_announces if ann < event_time])
+    return experiment_filtered
+
+def mergeExperiment(experiment, event_time=160):
+    experiment_filtered = []
+    for i in range(len(experiment)):
+        node_announces = experiment[i]
+        if i < len(experiment) / 2: experiment_filtered.append(node_announces)
+        else: experiment_filtered.append([ann for ann in node_announces if ann > event_time])
+    return experiment_filtered
+        

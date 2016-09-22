@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from pprint import pprint
 
 colors = ["firebrick", "sienna", "orange", "gold", "olive", "sage", "mediumseagreen", "teal", "dodgerblue", "darkviolet", "deeppink"]
-event_time = 150
+event_time = 160
 
 paths = sys.argv[1:]
 names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[:2]) for path in paths]
@@ -17,14 +17,7 @@ print("Experiment names: "+", ".join(names))
 experiments = []
 for path in paths:
     experiment = getAnnouncesFromPath(path)
-    experiment_filtered = []
-    for i in range(len(experiment)):
-        node_announces = experiment[i]
-        if i >= len(experiment) / 2:
-            experiment_filtered.append(node_announces)
-        else:
-            experiment_filtered.append([ann for ann in node_announces if ann > 150])
-    experiments.append(experiment_filtered)
+    experiments.append(splitExperiment(experiment))
 
 apses = [computeAnnouncesPerSecond(experiment)[1] for experiment in experiments]
 
@@ -40,12 +33,14 @@ import matplotlib.patches as mpatches
 patches = []
 for i in range(len(names)):
     color = colors[i % len(colors)]
-    line(ax1, apses[i], linewidth=1, alpha=0.7, color=color)
+    # line(ax1, apses[i], linewidth=1, alpha=0.7, color=color)
+    # avgLine(ax1, apses[i], linewidth=1, alpha=0.7, color=color, avg=20)
+    weightedAvgLine(ax1, apses[i], linewidth=1, alpha=0.7, color=color, weights=range(10))
     patches.append(mpatches.Patch(color=color, label=names[i], alpha=0.7))
     i += 1
 
 ax1.legend(patches, names, prop={'size': 10})
-event(fig, event_time, "merge")
+event(fig, event_time, "split")
 
 # ax1.set_ylim([-1, len(announces)])
 ax1.set_xlim([0, end])
