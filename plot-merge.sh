@@ -15,7 +15,7 @@ announce_groups="002 005 010 025 050 100 200 MaxFirst- MinFirst- Random- RandomS
 
 for g in $announce_groups; do
     ./compare-announces-merge.py $1/*$g*/
-    mv compare-announces-merge.pdf $pdf_path/compare-announces-$g.pdf
+    mv compare-announces-merge.pdf $pdf_path/compare-announces-merge-$g.pdf
 done
 
 
