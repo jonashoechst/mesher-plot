@@ -36,7 +36,8 @@ for i in range(len(names)):
 
 ax1.legend(patches, names, prop={'size': 9})
 
-ax1.set_ylim([0, 105])
+ax1.set_yscale("log", nonposx='clip')
+ax1.set_ylim([0.4, 105])
 ax1.set_xlim([0, end])
 fig.tight_layout()
 plt.savefig(os.path.basename(__file__).split(".")[0]+".pdf")
