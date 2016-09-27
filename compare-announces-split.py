@@ -34,8 +34,8 @@ patches = []
 for i in range(len(names)):
     color = colors[i % len(colors)]
     # line(ax1, apses[i], linewidth=1, alpha=0.7, color=color)
-    # avgLine(ax1, apses[i], linewidth=1, alpha=0.7, color=color, avg=20)
-    weightedAvgLine(ax1, apses[i], linewidth=1, alpha=0.7, color=color, weights=range(20))
+    avgLine(ax1, apses[i], linewidth=1, alpha=0.7, color=color, avg=19)
+    # weightedAvgLine(ax1, apses[i], linewidth=1, alpha=0.7, color=color, weights=range(20))
     patches.append(mpatches.Patch(color=color, label=names[i], alpha=0.7))
     i += 1
 
