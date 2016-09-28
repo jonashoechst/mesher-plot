@@ -191,7 +191,9 @@ def weightedAvgLine(ax, data, color="red", linewidth=0.5, alpha=0.5, weights=[1,
     x = numpy.arange(len(weights), len(data))
     ax.plot(x, avgs[len(weights):], color=color, linewidth=linewidth, alpha=alpha)
 
-def factorAvgLine(ax, data, color="red", linewidth=0.5, alpha=0.5, factor=0.8):
+def factorAvgLine(ax, data, x=None, color="red", linewidth=0.5, alpha=0.5, factor=0.8):
+    if x == None: x = numpy.arange(len(data))
+    
     neg_factor = 1 - factor
     current_avg = data[0]
     avgs = [current_avg]
@@ -199,7 +201,6 @@ def factorAvgLine(ax, data, color="red", linewidth=0.5, alpha=0.5, factor=0.8):
         current_avg = neg_factor*current_avg + factor*data[i]
         avgs.append(current_avg)
 
-    x = numpy.arange(len(data))
     ax.plot(x, avgs, color=color, linewidth=linewidth, alpha=alpha)
 
 def variableLine(ax, x, y, color="red", linewidth=0.5, alpha=0.5):
