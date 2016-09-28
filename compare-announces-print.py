@@ -7,7 +7,7 @@ from mesherhelp import *
 from pprint import pprint
 
 paths = sys.argv[1:]
-names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[:2]) for path in paths]
+names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
 experiments = [getAnnouncesFromPath(path) for path in paths]

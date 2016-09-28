@@ -7,11 +7,10 @@ from mesherhelp import *
 import matplotlib.pyplot as plt
 from pprint import pprint
 
-colors = ["firebrick", "sienna", "orange", "gold", "olive", "sage", "mediumseagreen", "teal", "dodgerblue", "darkviolet", "deeppink"]
 event_time = 160
 
 paths = sys.argv[1:]
-names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[:2]) for path in paths]
+names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
 experiments = []

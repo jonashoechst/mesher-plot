@@ -10,7 +10,7 @@ from pprint import pprint
 init_time_s = 20
 
 paths = sys.argv[1:]
-names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[:2]) for path in paths]
+names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
 

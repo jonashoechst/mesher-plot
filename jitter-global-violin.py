@@ -10,7 +10,7 @@ from pprint import pprint
 init_time_s = 40
 
 paths = sys.argv[1:]
-names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[:2]) for path in paths]
+names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
 
@@ -21,7 +21,7 @@ fig = plt.figure(1)
 violinplot(fig, names, experimtens_dist)
 
 ax1 = fig.add_subplot(111)
-ax1.set_ylabel("time interval (s)")
+ax1.set_ylabel("announce gaps (s)")
 
 fig.tight_layout()
 plt.savefig(os.path.basename(__file__).split(".")[0]+".pdf")

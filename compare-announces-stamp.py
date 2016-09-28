@@ -7,10 +7,8 @@ from mesherhelp import *
 import matplotlib.pyplot as plt
 from pprint import pprint
 
-colors = ["firebrick", "sienna", "orange", "gold", "olive", "sage", "mediumseagreen", "teal", "dodgerblue", "darkviolet", "deeppink"]
-
 paths = sys.argv[1:]
-names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[1:2]) for path in paths]
+names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
 experiments = [getAnnouncesFromPath(path) for path in paths]

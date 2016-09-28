@@ -8,10 +8,8 @@ import matplotlib.pyplot as plt
 from pprint import pprint
 from scipy.stats import gaussian_kde
 
-colors = ["firebrick", "sienna", "orange", "gold", "olive", "sage", "mediumseagreen", "teal", "dodgerblue", "darkviolet", "deeppink"]
-
 paths = sys.argv[1:]
-names = ["-".join(os.path.basename(os.path.normpath(path)).split("-")[0:2]) for path in paths]
+names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
 experiments = [CSVObject(path+"/measurement.csv") for path in paths]
