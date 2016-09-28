@@ -19,7 +19,7 @@ pprint(experiments)
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
 ax1.set_xlabel("time (s)")
-ax1.set_ylabel("power consumption (W)")
+ax1.set_ylabel("energy consumtion (Ws)")
 
 import matplotlib.patches as mpatches
 patches = []
@@ -30,15 +30,20 @@ for i in range(len(names)):
     color = colors[i % len(colors)]
     
     start = experiments[i].get_values("timestamp_ms")[0] 
-    x = [float(v-start)/1000 for v in experiments[i].get_values("timestamp_ms")]
+    x = [v-start for v in experiments[i].get_values("timestamp_ms")]
     data = experiments[i].get_values("power")
+    print("avg(power {}) = {}".format(names[i], avg(data)))
+    
+    avg_power = 1.37910095889 #min(data)
+    # Die werte werden in Watt gemessen. Um die Energie menge zu kalkulieren, muss durch das Messintervall geteilt werden (5 messungen / sekunde)
+    summed = [sum([(val-avg_power)/5 for val in data[:j+1]]) for j in range(len(data))]
     if end == 0: end = x[-1]
     else: end = min(end, x[-1])
     
-    factorAvgLine(ax1, data, x=x, linewidth=1, alpha=0.7, color=color, factor=1)
+    factorAvgLine(ax1, summed, x=x, linewidth=1, alpha=0.7, color=color, factor=1)
     patches.append(mpatches.Patch(color=color, label=names[i], alpha=0.7))
 
-ax1.legend(patches, names, prop={'size': 9})
+ax1.legend(patches, names, prop={'size': 9}, loc=4)
 fig.tight_layout()
 # ax1.set_ylim([0.4, 105])
 ax1.set_xlim([0, end])

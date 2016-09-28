@@ -6,6 +6,7 @@ from mesherhelp import *
 
 import matplotlib.pyplot as plt
 from pprint import pprint
+from scipy.stats import gaussian_kde
 
 colors = ["firebrick", "sienna", "orange", "gold", "olive", "sage", "mediumseagreen", "teal", "dodgerblue", "darkviolet", "deeppink"]
 
@@ -18,12 +19,12 @@ pprint(experiments)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
-ax1.set_xlabel("time (s)")
-ax1.set_ylabel("power consumption (W)")
+ax1.set_xlabel("power consumption (W)")
+ax1.set_ylabel("density")
 
 import matplotlib.patches as mpatches
 patches = []
-
+xlim = [1.35, 2]
 end = 0
 
 for i in range(len(names)):
@@ -32,15 +33,18 @@ for i in range(len(names)):
     start = experiments[i].get_values("timestamp_ms")[0] 
     x = [float(v-start)/1000 for v in experiments[i].get_values("timestamp_ms")]
     data = experiments[i].get_values("power")
-    if end == 0: end = x[-1]
-    else: end = min(end, x[-1])
+
+    density = gaussian_kde(data)
+    xs = numpy.linspace(xlim[0], xlim[1],1000)
+    density.covariance_factor = lambda : 0.05
+    density._compute_covariance()
     
-    factorAvgLine(ax1, data, x=x, linewidth=1, alpha=0.7, color=color, factor=1)
+    factorAvgLine(ax1, density(xs), x=xs, linewidth=1, alpha=0.7, color=color, factor=1)
     patches.append(mpatches.Patch(color=color, label=names[i], alpha=0.7))
 
-ax1.legend(patches, names, prop={'size': 9})
+# ax1.set_yscale("log", nonposx='clip')
+ax1.legend(patches, names, prop={'size': 9}, loc=1)
 fig.tight_layout()
-# ax1.set_ylim([0.4, 105])
-ax1.set_xlim([0, end])
+ax1.set_xlim(xlim)
 plt.savefig(os.path.basename(__file__).split(".")[0]+".pdf")
 print("Plot is done.\n")
