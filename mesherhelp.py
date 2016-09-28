@@ -1,5 +1,7 @@
 import os
 
+colors = ["firebrick", "sienna", "orange", "gold", "olive", "sage", "mediumseagreen", "teal", "dodgerblue", "darkviolet", "deeppink"]
+
 def getAnnouncesFromPath(path, offset=0):
     mesher_root = os.path.join(path, "mesher/")
     logs = []
@@ -65,4 +67,18 @@ def mergeExperiment(experiment, event_time=160):
         if i < len(experiment) / 2: experiment_filtered.append(node_announces)
         else: experiment_filtered.append([ann for ann in node_announces if ann > event_time])
     return experiment_filtered
-        
+    
+def determineNames(paths):
+    name_parts = [os.path.basename(os.path.normpath(path)).split("-")[:2] for path in paths]
+    
+    parts0 = zip(*name_parts)[0]
+    parts1 = zip(*name_parts)[1]
+    if all(x == parts0[0] for x in parts0):
+        print("all parts0 are equal: {}".format(parts0))
+        return list(parts1)
+    if all(x == parts1[0] for x in parts1): 
+        print("all parts1 are equal: {}".format(parts1))
+        return list(parts0)
+    
+    return ["-".join(part) for part in name_parts]
+    
