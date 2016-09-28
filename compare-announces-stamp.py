@@ -32,11 +32,13 @@ for i in range(len(names)):
     patches.append(mpatches.Patch(color=color, label=names[i], alpha=0.7))
     i += 1
 
-ax1.legend(patches, names, prop={'size': 9})
+ax1.legend(patches, names, prop={'size': 11})
 
 ax1.set_yscale("log", nonposx='clip')
-ax1.set_ylim([0.4, 105])
-ax1.set_xlim([0, end])
+ax1.set_ylim([0.2, 105])
+ax1.set_xlim([0, 299])
 fig.tight_layout()
+# ax1.xaxis.set_ticks([]);
+# ax1.yaxis.set_ticks([]);
 plt.savefig(os.path.basename(__file__).split(".")[0]+".pdf")
 print("Plot is done.\n")
