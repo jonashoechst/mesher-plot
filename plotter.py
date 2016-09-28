@@ -88,7 +88,7 @@ def violinplot(fig, keys, values, bottom=None, top=None, colors=None):
     ax = fig.add_subplot(111)
 
     # Create the boxplot
-    vp = ax.violinplot(values, positions=range(len(values)), widths=0.9, showmeans=False, showextrema=True, showmedians=True, points=1000)
+    vp = ax.violinplot(values, positions=range(len(values)), widths=0.9, showmeans=True, showextrema=True, showmedians=False, points=1000)
     ax.set_xticklabels([""]+keys)
 
     ax.get_xaxis().tick_bottom()
@@ -98,10 +98,10 @@ def violinplot(fig, keys, values, bottom=None, top=None, colors=None):
 
     plt.setp(vp['bodies'], edgecolor=blue, facecolor=mint, alpha=1)
     plt.setp(vp['cbars'], color=blue)
-    plt.setp(vp['cmedians'], color=yellow, linewidth=2)
+    # plt.setp(vp['cmedians'], color=yellow, linewidth=2)
     plt.setp(vp['cmins'], color=blue)
     plt.setp(vp['cmaxes'], color=blue)
-    # plt.setp(vp['cmeans'], color=yellow, linewidth=2)
+    plt.setp(vp['cmeans'], color=yellow, linewidth=2)
     
     if colors: 
         plt.setp(vp['bodies'], alpha=0.7)
