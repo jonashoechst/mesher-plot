@@ -73,12 +73,8 @@ def determineNames(paths):
     
     parts0 = zip(*name_parts)[0]
     parts1 = zip(*name_parts)[1]
-    if all(x == parts0[0] for x in parts0):
-        print("all parts0 are equal: {}".format(parts0))
-        return list(parts1)
-    if all(x == parts1[0] for x in parts1): 
-        print("all parts1 are equal: {}".format(parts1))
-        return list(parts0)
+    if all(x == parts0[0] for x in parts0): return list(parts1)
+    if all(x == parts1[0] for x in parts1): return list(parts0)
     
     return ["-".join(part) for part in name_parts]
     
