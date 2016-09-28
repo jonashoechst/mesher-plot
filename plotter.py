@@ -83,6 +83,32 @@ def boxplot(fig, keys, values, bottom=None, top=None):
     plt.setp(bp['medians'], color=yellow, linewidth=2)
     plt.setp(bp['fliers'], marker='+')
 
+def violinplot(fig, keys, values, bottom=None, top=None, colors=None):
+    '''Creates a boxplot: keys -> x-axis ticks; values -> arrays of values'''
+    ax = fig.add_subplot(111)
+
+    # Create the boxplot
+    vp = ax.violinplot(values, positions=range(len(values)), widths=0.9, showmeans=False, showextrema=True, showmedians=True, points=1000)
+    ax.set_xticklabels([""]+keys)
+
+    ax.get_xaxis().tick_bottom()
+    ax.get_yaxis().tick_left()
+    if bottom != None and top != None: ax.set_ylim(bottom, top)
+    plt.xticks(rotation=25)
+
+    plt.setp(vp['bodies'], edgecolor=blue, facecolor=mint, alpha=1)
+    plt.setp(vp['cbars'], color=blue)
+    plt.setp(vp['cmedians'], color=yellow, linewidth=2)
+    plt.setp(vp['cmins'], color=blue)
+    plt.setp(vp['cmaxes'], color=blue)
+    # plt.setp(vp['cmeans'], color=yellow, linewidth=2)
+    
+    if colors: 
+        plt.setp(vp['bodies'], alpha=0.7)
+        for i in range(len(vp['bodies'])):
+            vp['bodies'][i].set_facecolor(colors[i])
+    
+
 def multibox(fig, keys, values, modul, bottom=None, top=None):
     ax = fig.add_subplot(111)
 
