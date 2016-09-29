@@ -13,7 +13,6 @@ names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
 experiments = [CSVObject(path+"/measurement.csv") for path in paths]
-pprint(experiments)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)

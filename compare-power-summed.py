@@ -12,7 +12,6 @@ names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
 experiments = [CSVObject(path+"/measurement.csv") for path in paths]
-pprint(experiments)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
@@ -30,7 +29,6 @@ for i in range(len(names)):
     start = experiments[i].get_values("timestamp_ms")[0] 
     x = [v-start for v in experiments[i].get_values("timestamp_ms")]
     data = experiments[i].get_values("power")
-    print("avg(power {}) = {}".format(names[i], avg(data)))
     
     avg_power = 1.37910095889 #min(data)
     # Die werte werden in Watt gemessen. Um die Energie menge zu kalkulieren, muss durch das Messintervall geteilt werden (5 messungen / sekunde)
@@ -41,7 +39,7 @@ for i in range(len(names)):
     factorAvgLine(ax1, summed, x=x, linewidth=1, alpha=0.7, color=color, factor=1)
     patches.append(mpatches.Patch(color=color, label=names[i], alpha=0.7))
 
-ax1.legend(patches, names, prop={'size': 9}, loc=4)
+ax1.legend(patches, names, prop={'size': 9}, loc=2)
 fig.tight_layout()
 # ax1.set_ylim([0.4, 105])
 ax1.set_xlim([0, end])

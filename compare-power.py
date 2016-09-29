@@ -12,7 +12,6 @@ names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
 experiments = [CSVObject(path+"/measurement.csv") for path in paths]
-pprint(experiments)
 
 fig = plt.figure()
 ax1 = fig.add_subplot(111)
@@ -28,7 +27,7 @@ for i in range(len(names)):
     color = colors[i % len(colors)]
     
     start = experiments[i].get_values("timestamp_ms")[0] 
-    x = [float(v-start)/1000 for v in experiments[i].get_values("timestamp_ms")]
+    x = [float(v-start) for v in experiments[i].get_values("timestamp_ms")]
     data = experiments[i].get_values("power")
     if end == 0: end = x[-1]
     else: end = min(end, x[-1])
