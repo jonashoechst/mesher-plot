@@ -2,8 +2,8 @@ import os
 
 colors = ["firebrick", "sienna", "orange", "gold", "olive", "sage", "mediumseagreen", "teal", "dodgerblue", "darkviolet", "deeppink"]
 
-def getAnnouncesFromPath(path, offset=0):
-    mesher_root = os.path.join(path, "mesher/")
+def getAnnouncesFromPath(path, offset=0, subpath="mesher/"):
+    mesher_root = os.path.join(path, subpath)
     logs = []
 
     for root, dirs, files in os.walk(mesher_root):
