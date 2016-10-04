@@ -10,6 +10,16 @@ echo "Saving pdfs to $pdf_path"
 
 mkdir -p $pdf_path
 
+
+for i in $1/*/ ; do
+    ./power-announces.py $i &
+    # ./load-netmon.py $i &
+done
+
+wait
+
+mv *.pdf $pdf_path
+
 echo
 echo "Plotting jitter and announce groups"
 
