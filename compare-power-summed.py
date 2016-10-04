@@ -41,9 +41,6 @@ for i in range(len(names)):
     if global_end == 0: end = x[-1]
     else: global_end = max(end, x[-1])
     
-    print("freq: {}".format(frequency))
-    print("finsum: {}".format(summed[-1]))
-    
     factorAvgLine(ax1, summed, x=x, linewidth=1, alpha=0.7, color=color, factor=1)
     patches.append(mpatches.Patch(color=color, label=names[i], alpha=0.7))
 
