@@ -23,7 +23,7 @@ mv *.pdf $pdf_path
 echo
 echo "Plotting jitter and announce groups"
 
-jitter_groups="001 002 005 009 MaxFirst- MinFirst- Random- RandomSweet- Static- Step- StepRand- Unsteady-"
+jitter_groups="001 002 005 009 MaxFirst- MinFirst- Random- RandomSweet- Static- Static01- Static05- Step- StepRand- Unsteady-"
 
 for g in $jitter_groups; do
     ./compare-power-summed.py $1/*$g*/ &
