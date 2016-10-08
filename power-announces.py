@@ -13,7 +13,7 @@ def getSutAnnouncesFromPath(path):
 
     for root, dirs, files in os.walk(mesher_root):
         for filename in files:
-            if not "sut" in filename: continue
+            if not ("sut" in filename or "10.0.10.2" in filename): continue
             logfile = open(root + filename)
             logs.append([l.split("\n")[0] for l in logfile.readlines()])
             logfile.close()
