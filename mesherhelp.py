@@ -21,7 +21,7 @@ def getAnnouncesFromPath(path, offset=0, subpath="mesher/"):
         for logline in log:
             if "ANNOUNCE" in logline and logline.split(",")[2] == ids[-1]:
                 tmp.append(float(logline.split(",")[0])/1000)
-        announces.append(tmp)
+        if len(tmp) > 0: announces.append(tmp)
 
     start = min2d(announces) + offset
 
