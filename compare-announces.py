@@ -14,6 +14,9 @@ print("Experiment names: "+", ".join(names))
 experiments = [getAnnouncesFromPath(path) for path in paths]
 apses = [computeAnnouncesPerSecond(experiment)[1] for experiment in experiments]
 
+# normalisation for node count
+apses = [[float(aps[i])/float((i if i < 100 else 100)+1) for i in range(len(aps))] for aps in apses]
+
 # minimum der maximalen experiment zeiten
 end = min([max2d(experiment) for experiment in experiments])
 
