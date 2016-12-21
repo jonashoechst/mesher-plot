@@ -37,7 +37,7 @@ for i in range(len(names)):
 
 ax1.legend(patches, names, prop={'size': 9})
 fig.tight_layout()
-# ax1.set_ylim([0.4, 105])
+ax1.set_ylim([1.2, 3.5])
 ax1.set_xlim([0, end])
 plt.savefig(os.path.basename(__file__).split(".")[0]+".pdf")
 print("Plot is done.\n")

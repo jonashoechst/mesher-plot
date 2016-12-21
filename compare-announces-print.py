@@ -10,7 +10,7 @@ paths = sys.argv[1:]
 names = determineNames(paths)
 
 print("Experiment names: "+", ".join(names))
-experiments = [getAnnouncesFromPath(path) for path in paths]
+experiments = [getAnnouncesFromPath(path, subpath="", offset=50) for path in paths]
 apses = [computeAnnouncesPerSecond(experiment)[1] for experiment in experiments]
 
 counts = [sum([len(node_ann) for node_ann in exp]) for exp in experiments]

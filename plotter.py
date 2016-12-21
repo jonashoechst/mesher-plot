@@ -86,6 +86,7 @@ def boxplot(fig, keys, values, bottom=None, top=None):
 def violinplot(fig, keys, values, bottom=None, top=None, colors=None):
     '''Creates a boxplot: keys -> x-axis ticks; values -> arrays of values'''
     ax = fig.add_subplot(111)
+    print(ax)
 
     # Create the boxplot
     vp = ax.violinplot(values, positions=range(len(values)), widths=0.9, showmeans=True, showextrema=True, showmedians=False, points=1000)

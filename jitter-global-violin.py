@@ -17,7 +17,7 @@ print("Experiment names: "+", ".join(names))
 experiments = [sorted(flatten(getAnnouncesFromPath(path, offset=init_time_s))) for path in paths]
 experimtens_dist = [[b-a for a, b in zip(exp[:-1], exp[1:])] for exp in experiments]
 
-fig = plt.figure(1)
+fig = plt.figure(1, figsize=(8, 3))
 violinplot(fig, names, experimtens_dist)
 
 ax1 = fig.add_subplot(111)
